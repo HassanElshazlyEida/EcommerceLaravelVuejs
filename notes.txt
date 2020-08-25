@@ -1,0 +1,22 @@
+#1(){  [AdminRoutesWeb]
+    How to make two web routes ?
+        app/Providers/RouteServiceProvider
+        create new  mapWebRoutes() , then insert it into map()
+}
+#2,#3(){ [AdminAuth,language]
+    Efficient admin auth,
+    language
+}
+#4,#5(){  [MailTrap,Mail,ResetPassword,Token]
+    helper {
+        function url('admin'.url) to url(url), admin auth()
+        mail adminResetPassword(){
+            php artisan make:mail AdminResetPassword --markdown=admin.emails.admin_reset_password
+        }
+        send mail confirmation to mailtrap and then ensure the token is the correct as DB:TABLE
+    }
+}
+#7,#8,#9(){
+    yajra datatables (){https://yajrabox.com/docs/laravel-datatables/master/html-builder-table}
+    database tables features
+}
