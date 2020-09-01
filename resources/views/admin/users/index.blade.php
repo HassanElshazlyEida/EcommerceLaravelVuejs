@@ -8,7 +8,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        {!! Form::open(['id'=>'form_data','url'=>aurl('admin/destroy/all'),'method'=>'delete']) !!}
+        {!! Form::open(['id'=>'form_data','url'=>aurl('users/destroy/all'),'method'=>'delete']) !!}
         {!! $dataTable->table([
             'class'=>'dataTable table table-bordered table-hover'
         ],true)!!}

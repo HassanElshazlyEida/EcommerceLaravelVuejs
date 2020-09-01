@@ -12,7 +12,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">{{__("admin.admin_table_delete")}}</h4>
     </div>
-    {!! Form::open(['route'=>['admins.destroy',$id],'method'=>'delete']) !!}
+    {!! Form::open(['route'=>['users.destroy',$id],'method'=>'delete']) !!}
     <div class="modal-body">
         <p>{{__("admin.admin_delete_one",['name'=>$name])}}</p>
     </div>

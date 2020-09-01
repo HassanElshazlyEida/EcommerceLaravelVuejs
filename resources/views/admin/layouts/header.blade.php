@@ -18,7 +18,21 @@
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{ url('/')}}/design/adminLTE/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ url('/')}}/design/adminLTE/dist/css/adminlte.min.css">
+  @if(dir_lang()=="ltr")
+    <link rel="stylesheet" href="{{ url('/')}}/design/adminLTE/dist/css/adminlte.min.css">
+  @else
+    <link rel="stylesheet" href="{{ url('/')}}/design/adminLTE/dist/css/rtl/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="{{ url('/')}}/design/adminLTE/dist/css/rtl/rtl.css">
+    <link rel="stylesheet" href="{{ url('/')}}/design/adminLTE/dist/css/rtl/AdminRTL.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <style type="text/css">
+        html,body {
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
+  @endif
+  <!-- Datatables checkbox Delelte -->
+  <script src="{{ url('/design/adminLTE/dist/js/Datatables_checkbox.js')}}"></script>
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ url('/')}}/design/adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->

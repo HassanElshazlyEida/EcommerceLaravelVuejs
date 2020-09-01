@@ -16,7 +16,22 @@
         send mail confirmation to mailtrap and then ensure the token is the correct as DB:TABLE
     }
 }
-#7,#8,#9(){
+#7,#8,#9,#10(){
     yajra datatables (){https://yajrabox.com/docs/laravel-datatables/master/html-builder-table}
     database tables features
+    deffernce between stack,@push --- section  @yield
+}
+#11{
+    language arabic,english
+}
+#12{
+    helper RIGHT,LEFT Dashboard
+}
+#13,#14(){
+    checkbox elements
+    laravel collective FORM
+}
+#15,#16,#17(){
+    USING FORM features
+    NICE NAMES VALIDATION
 }

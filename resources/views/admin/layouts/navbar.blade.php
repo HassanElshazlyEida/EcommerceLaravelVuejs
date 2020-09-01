@@ -112,10 +112,24 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-globe"></i>
         </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">{{__('admin.chooseLanguage')}}</span>
+          <div class="dropdown-divider"></div>
+          <a href="{{aurl('lang/ar')}}" class="dropdown-item">
+            <i class="fa fa-flag"></i>
+            عربي
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{{aurl('lang/en')}}" class="dropdown-item">
+            <i class="fa fa-flag"></i>
+            English
+          </a>
+
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">

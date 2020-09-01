@@ -2,30 +2,35 @@
 
 namespace App\DataTables;
 
-use App\Admin;
+use App\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class AdminDatatable extends DataTable
+class UsersDatatable extends DataTable
 {
 
     public function dataTable($query)
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('checkbox', 'admin.admins.btn.checkbox')
-            ->addColumn('edit', 'admin.admins.btn.edit')
-            ->addColumn('delete', 'admin.admins.btn.delete')
-            ->rawColumns(['edit','delete','checkbox']);
+            ->addColumn('checkbox', 'admin.users.btn.checkbox')
+            ->addColumn('edit', 'admin.users.btn.edit')
+            ->addColumn('delete', 'admin.users.btn.delete')
+            ->addColumn('level', 'admin.users.btn.level')
+            ->rawColumns(['edit','delete','checkbox','level']);
     }
 
 
     public function query()
     {
-        return Admin::query();
+        return User::query()->where(function($query){
+            if(request()->has('level')){
+                return $query->where("level",request('level'));
+            }
+        });
     }
 
     /**
@@ -59,7 +64,7 @@ class AdminDatatable extends DataTable
                             [ 10, 25, 50, __('admin.Show_all')]
                             ],
                         "initComplete"=> "function () {
-                            this.api().columns([2,3]).every(function () {
+                            this.api().columns([2,4]).every(function () {
                                 var column = this;
                                 var input = document.createElement('input');
                                 $(input).appendTo($(column.footer()).empty())
@@ -98,8 +103,9 @@ class AdminDatatable extends DataTable
             ],
             //New WAY
             Column::make('id'),//same as blew
-            Column::make('name')->title(__("admin.admin_table_name")),
-            Column::make('email')->title(__("admin.admin_table_email")),
+            Column::make('name')->title(__("admin.user_name")),
+            Column::make('level')->title(__("admin.level")),
+            Column::make('email')->title(__("admin.user_email")),
             Column::make('created_at')->title(__("admin.admin_table_created_at")),
             Column::make('updated_at')->title(__("admin.admin_table_updated_at")),
             Column::computed('edit')
@@ -126,6 +132,6 @@ class AdminDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Admin_' . date('YmdHis');
+        return 'Users_' . date('YmdHis');
     }
 }

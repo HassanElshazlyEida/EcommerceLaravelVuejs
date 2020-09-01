@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Admin;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DataTables\AdminDatatable;
-class AdminController extends Controller
+use App\DataTables\UsersDatatable;
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(AdminDatatable $admin)
+    public function index(UsersDatatable $users)
     {
-      return $admin->render('admin.admins.index',['title'=>__("admin.admin_table")]);
+      return $users->render('admin.users.index',['title'=>__("admin.users_table")]);
     }
 
     /**
@@ -25,7 +25,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-      return view('admin.admins.create',['title'=>__("admin.admin_create")]);
+      return view('admin.users.create',['title'=>__("admin.user_create")]);
     }
 
     /**
@@ -38,17 +38,19 @@ class AdminController extends Controller
     {
        $data=$this->validate(request(),[
            'name'=>'required',
-           'email'=>'required|unique:admins|email',
+           'level'=>'required|in:user,company,vendor',
+           'email'=>'required|unique:users|email',
            'password'=>'required|min:6',
        ],[],[
-           'name'=>__("admin.admin_name"),
-           'email'=>__("admin.admin_email"),
-           'password'=>__("admin.admin_password"),
+           'name'=>__("admin.user_name"),
+           'level'=>__("admin.level"),
+           'email'=>__("admin.user_email"),
+           'password'=>__("admin.user_password"),
        ]);
         $data['password']=bcrypt(request('password'));
-        Admin::create($data);
-        session()->flash('success',__("admin.admin_created"));
-        return redirect(aurl('admins'));
+        User::create($data);
+        session()->flash('success',__("admin.user_created"));
+        return redirect(aurl('users'));
     }
 
     /**
@@ -68,10 +70,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(User $user)
     {
 
-       return view("admin.admins.edit",['title'=>__("admin.edit")],compact('admin'));
+       return view("admin.users.edit",['title'=>__("admin.user_edit")],compact('user'));
     }
 
     /**
@@ -81,22 +83,24 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, User $user)
     {
         $data=$this->validate(request(),[
             'name'=>'required',
-            'email'=>'required|email|unique:admins,id,'.$admin->id,
+            'level'=>'required|in:user,company,vendor',
+            'email'=>'required|email|unique:users,id,'.$user->id,
             'password'=>'sometimes|nullable|min:6',
         ],[],[
-            'name'=>__("admin.admin_name"),
-            'email'=>__("admin.admin_email"),
-            'password'=>__("admin.admin_password"),
+            'name'=>__("admin.user_name"),
+            'level'=>__("admin.level"),
+            'email'=>__("admin.user_email"),
+            'password'=>__("admin.user_password"),
         ]);
         if(request()->has('password'))
             $data['password']=bcrypt(request('password'));
-        $admin->update($data);
-        session()->flash('success',__("admin.admin_updated"));
-        return redirect(aurl('admins'));
+        $user->update($data);
+        session()->flash('success',__("admin.user_updated"));
+        return redirect(aurl('users'));
     }
 
     /**
@@ -105,19 +109,19 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(User $user)
     {
-           $admin->delete();
-           session()->flash('success',__("admin.admin_deleted"));
-           return redirect(aurl('admins'));
+           $user->delete();
+           session()->flash('success',__("admin.user_deleted"));
+           return redirect(aurl('users'));
     }
     public function multi_delete(){
           if(is_array(request('item'))){
-            Admin::destroy(request('item'));
+            User::destroy(request('item'));
           }else {
-            Admin::find(request('item'))->delete();
+            User::find(request('item'))->delete();
           }
-          session()->flash('success',__("admin.admins_deleted"));
-          return redirect(aurl('admins'));
+          session()->flash('success',__("admin.users_deleted"));
+          return redirect(aurl('users'));
     }
 }

@@ -24,11 +24,20 @@ Route::group(['prefix' => 'admin','namespace'=>"Admin"], function () {
     Route::get("reset/password/{token}",'AdminAuthController@reset_password');
     Route::post("reset/password/{token}",'AdminAuthController@reset_password_confirm');
     Route::group(['middleware'=>'admin:admin'],function(){
+        Route::resource("users",'UsersController');
+        Route::delete("users/destroy/all","UsersController@multi_delete");
+
         Route::resource("admins",'AdminController');
+        Route::delete("admin/destroy/all","AdminController@multi_delete");
         Route::get("/",function(){
             return view('admin.home');
         });
         Route::any("logout",'AdminAuthController@logout');
+        Route::get("lang/{lang}",function($lang){
+            session()->has('lang') ?  session()->forget('lang'):"";
+            $lang=='ar' ?  session()->put('lang','ar') :  session()->put('lang','en');
+            return back();
+        });
     });
 
 });
