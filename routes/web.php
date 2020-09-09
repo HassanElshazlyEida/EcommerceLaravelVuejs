@@ -12,7 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get("/",function(){
-    return view('welcome');
+
+Route::group(['middleware'=>'Maintenance'],function(){
+    Route::get('/', function () {
+        return view('norda.home');
+    });
 });
- 
+Route::get("maintenance",function(){
+    if(setting()->status=='open')
+        return redirect('/');
+    return view('norda.maintenance');
+});

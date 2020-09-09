@@ -19,6 +19,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal">{{__("admin.table_record_delete_close")}}</button>
         {!! Form::submit(__("admin.table_record_delete_yes"),['class'=>'btn btn-danger'])!!}
+        {!! Form::close()!!}
     </div>
     </div>
 

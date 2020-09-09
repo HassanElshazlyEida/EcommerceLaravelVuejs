@@ -13,6 +13,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{aurl("settings")}}" class="nav-link">
+                <i class="nav-icon fa fa-cogs"></i>
+                <p>
+                {{   __("admin.settings")}}
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-user"></i>
                 <p>
@@ -33,6 +41,8 @@
                 </li>
             </ul>
         </li>
+
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fa fa-users"></i>
@@ -92,6 +102,36 @@
           </li>
         </ul>
       </li>
+
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fa fa-flag"></i>
+          <p>
+         {{   __("admin.countries")}}
+        @if(dir_lang()=="ltr")
+            <i class="fas fa-angle-right right"></i>
+        @else
+            <i class="fas fa-angle-down down"></i>
+        @endif
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{aurl('countries')}}" class="nav-link">
+                    <i class="fas fa-flag nav-icon"></i>
+                    <p>{{__("admin.countries")}}</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{aurl('countries/create')}}" class="nav-link">
+                    <i class="fas fa-plus nav-icon"></i>
+                    <p>{{trans_(__("admin.add"))}}</p>
+                </a>
+            </li>
+        </ul>
+      </li>
+
+
     </ul>
   </nav>
   <!-- /.sidebar-menu -->

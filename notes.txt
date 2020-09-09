@@ -35,3 +35,9 @@
     USING FORM features
     NICE NAMES VALIDATION
 }
+#22(){
+    stroage link
+    FILESYSTEM_DRIVER=public //env
+     php artisan storage:link
+        The [/home/hassan/Works/EcommerceLaravelVuejs/public/storage] link has been connected to [/home/hassan/Works/EcommerceLaravelVuejs/storage/app/public].
+}

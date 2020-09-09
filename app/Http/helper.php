@@ -4,6 +4,16 @@
             return url('admin/'.$url);
         }
     }
+    if(!function_exists('setting')){
+        function setting(){
+            return \App\Setting::orderBy("id",'desc')->first();
+        }
+    }
+    if(!function_exists('Up')){
+        function Up(){
+            return new \App\Http\Controllers\Upload;
+        }
+    }
     if(!function_exists('admin')){
         function admin(){
             return auth()->guard('admin');
@@ -14,7 +24,7 @@
             if(session()->has('lang'))
                 return session('lang');
             else
-                return 'en';
+                return setting()->main_lang;
         }
     }
     if(!function_exists('dir_lang')){
@@ -60,3 +70,25 @@
         ];
         }
     }
+    if(!function_exists('trans_')){
+        function trans_($str){
+            $trans=explode(".", $str);
+            if(lang()=="en") {
+                return $trans[1];
+            }
+            else {
+                return $str;
+            }
+
+        }
+    }
+/* Validate Helper Function */
+      if(!function_exists('v_image')){
+            function v_image($ext=null){
+                if($ext===null){
+                    return   'image|mimes:jpg,jpeg,png,gif';
+                }else {
+                    return  'image|mimes:'.$ext;
+                }
+            }
+      }

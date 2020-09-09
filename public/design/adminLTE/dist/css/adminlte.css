@@ -10307,6 +10307,7 @@ body,
   left: inherit;
 }
 
+
 @supports not (-webkit-touch-callout: none) {
   .layout-fixed .wrapper .sidebar {
     height: calc(100vh - (3.5rem + 1px));
@@ -31218,3 +31219,4 @@ a.text-muted:hover {
   color: #ffffff;
 }
 /*# sourceMappingURL=adminlte.css.map */
+
